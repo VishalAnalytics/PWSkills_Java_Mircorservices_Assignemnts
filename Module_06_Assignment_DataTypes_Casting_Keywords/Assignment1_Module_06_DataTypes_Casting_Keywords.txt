@@ -1,0 +1,150 @@
+Assignment : Module 06 : Data Types, Casting and Keywords in Java
+
+Q1. What are Primitive Data types in Java ?
+
+Ans. In Java, primitive data types are the most basic data types that are built into the language and are not objects. They represent simple values and are used to store numeric, 
+	character, and boolean data. Primitive Data types in Java are 8, these are given below:
+		
+		
+		Data Type	Size	Description
+		byte	   1 byte	Stores whole numbers from -128 to 127
+		short	   2 bytes	Stores whole numbers from -32,768 to 32,767
+		int	       4 bytes	Stores whole numbers from -2,147,483,648 to 2,147,483,647
+		long	   8 bytes	Stores whole numbers from -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807
+		float	   4 bytes	Stores fractional numbers. Sufficient for storing 6 to 7 decimal digits. Example : 3.133
+		double	   8 bytes	Stores fractional numbers. Sufficient for storing 15 decimal digits. Example: 3.122d
+		boolean	   1 bit	Stores true or false values. Example: true, false
+		char	   2 bytes	Stores a single character/letter or ASCII values. Example: 'A', 'b', '$'.
+		
+Q2. What are the Identifiers in Java ?
+
+Ans. Identifiers are name of class, method, variable, label, package and interface. Identifiers serve as the means to identify and refer to these elements within a Java Program.
+	Characteristics and rules for identifiers are given below:
+		
+		a. Character Set:
+			* Consist of letters, digits, underscores ( _ ), and dollar signs ( $ ).
+			* The first character must be a letter ( a-z or A-Z ), an underscore or dollar sign.
+			
+		b. Length:
+			* Can be of any length.
+			* It's recommeneded to use meaningful names for readability.
+			
+		c. Case Sensitive: 
+			* Java is a case-sensitive, so uppercase and lowercase letters are treated differently in identifiers.
+			* Ex: "myvar" is different from "myVar".
+
+Q3. What is final class in Java ?
+
+Ans. In Java, a "final" class is a class that cannot be subclassed or extended by other classes. Once a class is declared as "final", its implementation is considered complete, 
+	and it cannot be altered or extended further. This provides control over class inheritance and prevents other classes from modifying or extending its behavior. "final" classes 
+	are often used for fundamental concepts, immutable data structures, or classes where modification is undesirable. 
+	
+	Marking a class as "final" can provide performance optimizations, enhance security, and ensure code clarity by indicating that the class's implementation is complete and should not be modified.
+	
+Q4. What are the two ways to make a class final ?
+
+Ans. There are two ways to make a class 'final'. These are:
+	
+	a. Declare the class wtih the 'final' Modifier:
+		* The most common way to make a class 'final' is by using the 'final' modifier in the class declaration. This prevents the class from being subclassed by other classes.
+			
+			Syntax:
+				final class MyClass{
+					// Class members and methods
+					}
+		* In above example, 'MyClass' cannot be subclassed due to 'final' modifier.
+					
+	b. Using Private Constructors and Factory Methods:  
+		* Another way to effectively make a class final, without using the final keyword, is by declaring all of its constructors as private and providing static factory methods to 
+		create instances. 
+		
+		* This approach not only prevents subclassing (since extending a class requires invoking a constructor of the parent class, which cannot be done if all constructors are private) 
+		but also gives you control over the process of instance creation.
+		
+		* Example: 
+			public class MyClass {
+				// Private constructor
+				private MyClass() {
+					// Constructor implementation here
+					}
+
+				// Static factory method
+				public static MyClass createInstance() {
+					return new MyClass();
+					}
+				}
+		* While this approach does not use the 'final' keyword, it effectively prevents the class from being subclassed because external classes cannot call any of the private constructors 
+		to extend the class.
+		
+Q5. Can we create an instance of final class in another class?
+
+Ans: Yes, we can create an instance of a final class in another class in Java. The 'final' modifier on a class prevents it from being subclassed, but it does not restrict the instantiation of 
+	objects from that class. The primary purpose of marking a class as final is to signal that the class is complete and should not be extended to alter its behavior.
+	
+	* Example:
+			// Define a final class
+			public final class FinalClass {
+				private String message;
+
+				public FinalClass(String message) {
+					this.message = message;
+				}
+
+				public String getMessage() {
+					return message;
+				}
+			}
+
+			// Another class from which you create an instance of the final class
+			public class TestFinalClass {
+				public static void main(String[] args) {
+					FinalClass instance = new FinalClass("Hello, World!");
+					System.out.println(instance.getMessage());
+				}
+			}
+
+	* In this example, FinalClass is declared as final, so it cannot be extended. However, in the TestFinalClass, we successfully create an instance of FinalClass and use it. 
+	This demonstrates that the finality of a class does not affect its instantiability
+	
+Q6.  What is Volatile keyword used for?
+
+Ans. The volatile keyword in Java ensures visibility and prevents reordering of reads and writes to a variable across multiple threads. It guarantees that any thread 
+	reads the latest write to a volatile variable, but it does not provide atomicity for operations involving the variable.
+
+Q7. What is the use of Transient Keyword?
+
+Ans. The transient keyword in Java is used to prevent serialization of certain fields of a class. When an object is serialized, fields marked with transient are not 
+	included in the serialized representation, ensuring sensitive or irrelevant data is not unnecessarily persisted or transmitted.
+	
+Q8. What are the types of casting ?
+
+Ans. There are 2 types of type casting, these are :
+	1. Implicit Casting: The process of converting data from lower data type to higher datatype is called "Implicit type casting". 
+		Ex: 
+		size in byte: 	  1       2        4      8        4        8
+		Datatype    :	byte => short => int => long => float => double
+	2. Explicit Casting:
+			* The process of converting data from higher data type to lower data type is called  "Explicit Type casting".
+			* JVM will do Explicit Type casting only on the instructions given by the programmer.
+			* In case of Explicit Type casting there would be loss of data.
+			* Syntax:: 
+						P a  = (Q) b;
+						P and Q should be primitive type and from Q to P there should be implicit relationship.
+						
+Q9. What is boxing and unboxing?
+
+Ans: Boxing is the automatic conversion of a primitive type to its corresponding wrapper class object (e.g., int to Integer). Unboxing is the reverse process, 
+	converting an object of a wrapper class to its corresponding primitive type. These processes allow primitive types to be used as objects when necessary.
+
+Q10. What is the difference between keywords, identifiers and literals in Java?
+
+Ans: These three are different from one another. We can check below the difference: 
+
+	Keywords:- These are predefined reserved words with specific meanings to the compiler, like 'class', 'public', and 'static', and cannot be used as identifiers. 
+	
+	Identifiers:- These are names given to elements such as classes, methods, and variables, etc... 
+	
+	Literals:- They represent fixed values that are not changed, such as numbers (123), strings ("Hello"), or boolean values (true, false). 
+	
+	In summary we can say that the keywords form the syntax, identifiers are user-defined symbols, and literals specify constant values directly in the code.
+	
